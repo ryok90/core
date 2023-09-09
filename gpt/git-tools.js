@@ -1,6 +1,6 @@
 // File: imports.js
 const { Tool } = require("langchain/tools");
-const execSync = require("child_process").execSync;
+const {execSync} = require("child_process");
 const z = require('zod');
 const { LLMSingleActionAgent, AgentActionOutputParser, AgentExecutor } = require("langchain/agents");
 const { LLMChain } = require("langchain/chains");
@@ -28,8 +28,7 @@ class GitCommitPromptTemplate extends BaseStringPromptTemplate {
     if(!fileName?.[0]) {
       return '';
     }
-    const commitMessage = await recursiveAgent("Write commit message for this codechange \n\n" + file);
-    return commitMessage;
+    return await recursiveAgent("Write commit message for this codechange \n\n" + file);
   }
   async format(input) {
     const toolStrings = this.tools

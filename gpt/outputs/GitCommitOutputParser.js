@@ -16,7 +16,9 @@ class GitCommitOutputParser extends AgentActionOutputParser {
   
         const match = /Action: (.*)\nAction Input: (.*)/s.exec(text);
 
-        if (!match) reject(new Error(`Could not parse LLM output: ${text}`));
+        if (!match) {
+          reject(new Error(`Could not parse LLM output: ${text}`));
+        }
         resolve({
           tool: match[1].trim(),
           toolInput: match[2].trim().replace(/^"+|"+$/g, ""),

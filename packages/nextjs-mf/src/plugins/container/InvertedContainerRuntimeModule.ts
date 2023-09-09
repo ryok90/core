@@ -689,7 +689,7 @@ class InvertedContainerRuntimeModule extends RuntimeModule {
       const containerName = module?._name || name;
       const containerModuleId = module?.id || module?.debugId;
 
-      if (!(containerName && containerName)) {
+      if (!(containerName)) {
         return '';
       }
 

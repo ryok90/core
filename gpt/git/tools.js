@@ -2,7 +2,7 @@
 
 
    const { Tool } = require("langchain/tools");
-   const execSync = require("child_process").execSync;
+   const {execSync} = require("child_process");
    const z = require('zod');
    const path = require('path')
 
@@ -35,8 +35,7 @@
      }
 
      async _call(args) {
-       const message = this.runGitCommand(`diff ${path.resolve(args.input)}`);
-       return message
+       return this.runGitCommand(`diff ${path.resolve(args.input)}`);
      }
 
      description = `Get the diff of staged changes.`;
@@ -72,8 +71,7 @@
      }
 
      async _call() {
-       const message = this.runGitCommand('diff');
-       return message;
+       return this.runGitCommand('diff');
      }
 
      description = `Get the diff of all changed files, staged or not.`;
@@ -106,8 +104,7 @@
      }
 
      async _call(input) {
-       const commitMessage = this.runGitCommand(`commit -m "${input}"`);
-       return commitMessage;
+       return this.runGitCommand(`commit -m "${input}"`);
      }
 
      get description() {

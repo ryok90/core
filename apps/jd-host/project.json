@@ -1,0 +1,92 @@
+{
+  "name": "jd-host",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/jd-host",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/jd-host"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "dist/apps/jd-host"
+        },
+        "production": {}
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "jd-host:build",
+        "dev": true,
+        "port": 3020
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "jd-host:build:development",
+          "dev": true,
+          "port": 3020
+        },
+        "production": {
+          "buildTarget": "jd-host:build:production",
+          "dev": false,
+          "port": 3020
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "jd-host:build:production"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/jd-host/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test:e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": true,
+        "commands": [
+          {
+            "command": "lsof -i :3020 || nx run jd-host:serve",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "sleep 10 && nx run jd-host:e2e",
+            "forwardAllArgs": true
+          }
+        ]
+      }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/jd-host/cypress.config.ts",
+        "testingType": "e2e",
+        "baseUrl": "http://localhost:3020"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "jd-host:serve:production"
+        }
+      }
+    }
+  },
+  "tags": ["next-runtime"]
+}

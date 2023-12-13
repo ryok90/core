@@ -31,7 +31,9 @@
         "dist/packages/typescript/src/index.js"
       ],
       "@module-federation/utilities": ["dist/packages/utilities/src/index.js"],
-      "@module-federation/utilities/*": ["dist/packages/utilities/*"]
+      "@module-federation/utilities/*": ["dist/packages/utilities/*"],
+      "@host/*": ["apps/jd-host/*"],
+      "@remote/*": ["apps/jd-remote/*"]
     }
   }
 }

@@ -1,0 +1,92 @@
+{
+  "name": "jd-remote",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/jd-remote",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/jd-remote"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "dist/apps/jd-remote"
+        },
+        "production": {}
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "jd-remote:build",
+        "dev": true,
+        "port": 3021
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "jd-remote:build:development",
+          "dev": true,
+          "port": 3021
+        },
+        "production": {
+          "buildTarget": "jd-remote:build:production",
+          "dev": false,
+          "port": 3021
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "jd-remote:build:production"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/jd-remote/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test:e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": true,
+        "commands": [
+          {
+            "command": "lsof -i :3021 || nx run jd-remote:serve",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "sleep 10 && nx run jd-remote:e2e",
+            "forwardAllArgs": true
+          }
+        ]
+      }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/jd-remote/cypress.config.ts",
+        "testingType": "e2e",
+        "baseUrl": "http://localhost:3021"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "jd-remote:serve:production"
+        }
+      }
+    }
+  },
+  "tags": ["next-runtime"]
+}

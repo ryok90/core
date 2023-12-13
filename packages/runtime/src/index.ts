@@ -18,7 +18,9 @@ let FederationInstance: FederationHost | null = null;
 export function init(options: UserOptions): FederationHost {
   // Retrieve the same instance with the same name
   const instance = getGlobalFederationInstance(options.name, options.version);
+  console.log("init called")
   if (!instance) {
+    console.log('no instance')
     // Retrieve debug constructor
     const FederationConstructor =
       getGlobalFederationConstructor() || FederationHost;
@@ -26,6 +28,8 @@ export function init(options: UserOptions): FederationHost {
     setGlobalFederationInstance(FederationInstance);
     return FederationInstance;
   } else {
+    console.log('with instance')
+    FederationInstance = instance;
     // Merge options
     instance.initOptions(options);
     return instance;
@@ -35,7 +39,8 @@ export function init(options: UserOptions): FederationHost {
 export function loadRemote(
   ...args: Parameters<FederationHost['loadRemote']>
 ): ReturnType<FederationHost['loadRemote']> {
-  assert(FederationInstance, 'Please call init first');
+  console.log("FederationInstance: ", FederationInstance);
+  assert(FederationInstance, 'aaa - Please call init first');
   // eslint-disable-next-line prefer-spread
   return FederationInstance.loadRemote.apply(FederationInstance, args);
 }

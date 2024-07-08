@@ -22,7 +22,27 @@ module.exports = composePlugins(
       remotes: {
         react_ts_nested_remote:
           // 'react_ts_nested_remote@http://localhost:3005/remoteEntry.js',
-          'react_ts_nested_remote@http://localhost:3005/mf-manifest.json',
+          // 'react_ts_nested_remote@http://localhost:3005/mf-manifest.json',
+          `promise new Promise(resolve => {
+            const raw = 'remote@http://localhost:3011/remoteEntry.js'
+            const [_, remoteUrlWithVersion] = raw.split('@')
+            const script = document.createElement('script')
+            script.src = remoteUrlWithVersion
+            script.onload = () => {
+              const proxy = {
+                get: (request) => window.remote.get(request),
+                init: (arg) => {
+                  try {
+                    return window.remote.init(arg)
+                  } catch(e) {
+                    console.log('remote container already initialized')
+                  }
+                }
+              }
+              resolve(proxy)
+            }
+            document.head.appendChild(script);
+          })`,
       },
     };
     config.plugins.push(new ModuleFederationPlugin(baseConfig));

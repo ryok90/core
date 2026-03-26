@@ -4522,6 +4522,9 @@ importers:
 
   packages/webpack-bundler-runtime:
     dependencies:
+      '@module-federation/error-codes':
+        specifier: workspace:*
+        version: link:../error-codes
       '@module-federation/runtime':
         specifier: workspace:*
         version: link:../runtime
@@ -43490,7 +43493,7 @@ snapshots:
 
   debug@4.1.1:
     dependencies:
-      ms: 2.1.1
+      ms: 2.1.3
 
   debug@4.3.4:
     dependencies:

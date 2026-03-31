@@ -108,7 +108,6 @@
   "author": "Zack Jackson <zackary.l.jackson@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "btoa": "1.2.1",
     "encoding": "^0.1.13",
     "node-fetch": "2.7.0",
     "tapable": "2.3.0",

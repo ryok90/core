@@ -3375,9 +3375,6 @@ importers:
       '@module-federation/webpack-bundler-runtime':
         specifier: workspace:*
         version: link:../webpack-bundler-runtime
-      btoa:
-        specifier: ^1.2.1
-        version: 1.2.1
       schema-utils:
         specifier: ^4.3.0
         version: 4.3.3
@@ -3397,9 +3394,6 @@ importers:
         specifier: ^5.0.0
         version: 5.104.1(@swc/core@1.7.26(@swc/helpers@0.5.13))(esbuild@0.27.3)(webpack-cli@5.1.4)
     devDependencies:
-      '@types/btoa':
-        specifier: ^1.2.5
-        version: 1.2.5
       ajv:
         specifier: 8.18.0
         version: 8.18.0
@@ -3921,9 +3915,6 @@ importers:
       '@module-federation/sdk':
         specifier: workspace:*
         version: link:../sdk
-      btoa:
-        specifier: 1.2.1
-        version: 1.2.1
       encoding:
         specifier: ^0.1.13
         version: 0.1.13
@@ -3995,9 +3986,6 @@ importers:
       '@module-federation/sdk':
         specifier: workspace:*
         version: link:../sdk
-      btoa:
-        specifier: 1.2.1
-        version: 1.2.1
       typescript:
         specifier: ^4.9.0 || ^5.0.0
         version: 5.9.3

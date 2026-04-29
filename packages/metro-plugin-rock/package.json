@@ -1,19 +1,17 @@
 {
-  "name": "@module-federation/metro-plugin-rnef",
-  "version": "2.4.0",
-  "description": "Metro Module Federation plugin for React Native Enterprise Framework (RNEF). Deprecated: use @module-federation/metro-plugin-rock instead.",
+  "name": "@module-federation/metro-plugin-rock",
+  "version": "2.3.1",
+  "description": "Metro Module Federation plugin for Rock",
   "keywords": [
-    "rnef",
+    "rock",
+    "rockjs",
     "module-federation",
     "metro",
     "react-native"
   ],
   "type": "module",
   "license": "MIT",
-  "contributors": [
-    "Jakub Romańczyk <j.romanczyk@gmail.com> (https://github.com/jbroma)",
-    "Kacper Wiszczuk <kacperwiszczuk@gmail.com> (https://github.com/esemesek)"
-  ],
+  "author": "Jakub Romańczyk <j.romanczyk@gmail.com> (https://github.com/jbroma)",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
@@ -21,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/module-federation/core.git",
-    "directory": "packages/metro-plugin-rnef"
+    "directory": "packages/metro-plugin-rock"
   },
   "files": [
     "dist/"
@@ -40,12 +38,12 @@
   },
   "peerDependencies": {
     "@module-federation/metro": "workspace:*",
-    "@rnef/tools": "^0.7.18"
+    "@rock-js/tools": "^0.13.0"
   },
   "devDependencies": {
     "@module-federation/metro": "workspace:*",
-    "@rnef/config": "^0.7.18",
-    "@rnef/tools": "^0.7.18",
+    "@rock-js/config": "^0.13.0",
+    "@rock-js/tools": "^0.13.0",
     "@rslib/core": "^0.10.0",
     "@typescript-eslint/eslint-plugin": "8.54.0",
     "@typescript-eslint/parser": "8.54.0",

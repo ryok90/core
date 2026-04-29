@@ -1,26 +1,24 @@
-# @module-federation/metro-plugin-rnef
+# @module-federation/metro-plugin-rock
 
-> **Deprecated:** RNEF has been renamed to [Rock](https://rockjs.dev). Please use [`@module-federation/metro-plugin-rock`](https://www.npmjs.com/package/@module-federation/metro-plugin-rock) instead. This package will continue to be published for backward compatibility but will not receive new features.
-
-Module Federation for React Native Enterprise Framework (RNEF) using Metro bundler. This plugin integrates the `@module-federation/metro` package with RNEF, providing commands to bundle Module Federation host and remotes.
+Module Federation for [Rock](https://rockjs.dev) (formerly RNEF) using Metro bundler. This plugin integrates the `@module-federation/metro` package with Rock, providing commands to bundle Module Federation host and remotes.
 
 ## Installation
 
-1. First, ensure you have [RNEF](https://github.com/callstack/rnef) set up in your project.
+1. First, ensure you have [Rock](https://rockjs.dev) set up in your project.
 
 2. Install the plugin:
 
 ```bash
-npm install --save-dev @module-federation/metro-plugin-rnef
+npm install --save-dev @module-federation/metro-plugin-rock
 ```
 
-3. Add the plugin to your RNEF configuration (typically in `rnef.config.mjs`):
+3. Add the plugin to your Rock configuration (typically in `rock.config.mjs`):
 
 ```typescript
-import { pluginMetro } from '@rnef/plugin-metro';
-import moduleFederation from '@module-federation/metro-plugin-rnef';
+import { pluginMetro } from '@rock-js/plugin-metro';
+import moduleFederation from '@module-federation/metro-plugin-rock';
 
-/** @type {import('@rnef/config').Config} */
+/** @type {import('@rock-js/config').Config} */
 export default {
   bundler: pluginMetro(),
   plugins: [moduleFederation()],
@@ -33,20 +31,20 @@ export default {
 
 ```bash
 # Bundle for iOS
-rnef bundle-mf-host --entry-file index.js --platform ios
+rock bundle-mf-host --entry-file index.js --platform ios
 
 # Bundle for Android
-rnef bundle-mf-host --entry-file index.js --platform android
+rock bundle-mf-host --entry-file index.js --platform android
 ```
 
 ### Bundle a Module Federation Remote
 
 ```bash
 # Bundle for iOS
-rnef bundle-mf-remote --platform ios
+rock bundle-mf-remote --platform ios
 
 # Bundle for Android
-rnef bundle-mf-remote --platform android
+rock bundle-mf-remote --platform android
 ```
 
 ### Available Options
@@ -85,3 +83,14 @@ rnef bundle-mf-remote --platform android
 - `--asset-catalog-dest [string]`: Path where to create an iOS Asset Catalog for images
 - `--reset-cache`: Removes cached files (default: false)
 - `--config <string>`: Path to the CLI configuration file
+
+## Migrating from RNEF
+
+If you're migrating from `@module-federation/metro-plugin-rnef`, update your imports:
+
+```diff
+-import moduleFederation from '@module-federation/metro-plugin-rnef';
++import moduleFederation from '@module-federation/metro-plugin-rock';
+```
+
+And update your config file from `rnef.config.mjs` to `rock.config.mjs` as per the [Rock migration guide](https://rockjs.dev).

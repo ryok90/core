@@ -33,6 +33,7 @@
       "@module-federation/treeshake-frontend",
       "@module-federation/metro",
       "@module-federation/metro-plugin-rnef",
+      "@module-federation/metro-plugin-rock",
       "@module-federation/metro-plugin-rnc-cli"
     ]
   ],

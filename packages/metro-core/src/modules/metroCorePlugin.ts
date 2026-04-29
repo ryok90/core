@@ -122,9 +122,7 @@ const MetroCorePlugin: () => ModuleFederationRuntimePlugin = () => {
       // Register bundle hashes with cache layer for integrity verification
       try {
         const cacheLayer = (globalThis as any).__FEDERATION__?.__NATIVE__
-          ?.__CACHE_LAYER__ as
-          | ICacheLayer
-          | undefined;
+          ?.__CACHE_LAYER__ as ICacheLayer | undefined;
         if (!cacheLayer) return args;
 
         const { origin, remoteInfo, remote } = args;
